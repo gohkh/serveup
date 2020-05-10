@@ -26,10 +26,10 @@ public class Menu {
                 .collect(Collectors.toUnmodifiableList()));
     }
 
-    public Menu addItem(Section section, Item toAdd) {
+    public Menu addItem(Section section, Item item, Price price) {
         Function<Section, Section> addItemToSection = s -> {
             if (section.equals(s)) {
-                return s.add(toAdd);
+                return s.add(item, price);
             }
             return s;
         };
@@ -37,10 +37,10 @@ public class Menu {
                 .collect(Collectors.toUnmodifiableList()));
     }
 
-    public Menu removeItem(Section section, Item toRemove) {
+    public Menu removeItem(Section section, Item item) {
         Function<Section, Section> removeItemFromSection = s -> {
             if (section.equals(s)) {
-                return s.remove(toRemove);
+                return s.remove(item);
             }
             return s;
         };
