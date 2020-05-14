@@ -24,9 +24,19 @@ public class Menu {
         return menu;
     }
 
+    public boolean contains(Item item) {
+        return sections.stream().anyMatch(section -> section.contains(item));
+    }
+
     public Menu addSection(Section toAdd) {
         if (sections.contains(toAdd)) {
             throw new DuplicateSectionException();
+        }
+
+        for (Item item : toAdd.getItems()) {
+            if (contains(item)) {
+                throw new DuplicateItemException();
+            }
         }
 
         return new Menu(Stream.concat(sections.stream(), Stream.of(toAdd))

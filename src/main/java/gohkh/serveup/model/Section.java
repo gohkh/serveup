@@ -26,6 +26,10 @@ public class Section {
         return section;
     }
 
+    public List<Item> getItems() {
+        return items;
+    }
+
     public boolean contains(Item item) {
         return items.contains(item);
     }
