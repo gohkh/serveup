@@ -26,12 +26,24 @@ public class Section {
         return section;
     }
 
+    public boolean contains(Item item) {
+        return items.contains(item);
+    }
+
     public Section add(Item toAdd) {
+        if (contains(toAdd)) {
+            throw new DuplicateItemException();
+        }
+
         return new Section(title, Stream.concat(items.stream(), Stream.of(toAdd))
                 .collect(Collectors.toUnmodifiableList()));
     }
 
     public Section remove(Item toRemove) {
+        if (!contains(toRemove)) {
+            throw new NoSuchItemException();
+        }
+
         return new Section(title, items.stream().filter(item -> !toRemove.equals(item))
                 .collect(Collectors.toUnmodifiableList()));
     }
