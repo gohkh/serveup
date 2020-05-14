@@ -1,48 +1,48 @@
 package gohkh.serveup.model;
 
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Section {
     private final String title;
-    private final Map<Item, Price> entries;
+    private final List<Item> items;
 
-    public Section(String title) {
-        this(title, Map.of());
-    }
-
-    private Section(String title, Map<Item, Price> entries) {
+    private Section(String title, List<Item> items) {
         this.title = title;
-        this.entries = entries;
+        this.items = items;
     }
 
-    public Section add(Item item, Price price) {
-        Map<Item, Price> newEntries = new LinkedHashMap<>(entries);
-        newEntries.put(item, price);
-        return new Section(title, Collections.unmodifiableMap(newEntries));
+    public static Section createEmpty(String title) {
+        return new Section(title, List.of());
     }
 
-    public Section remove(Item item) {
-        Map<Item, Price> newEntries = new LinkedHashMap<>(entries);
-        newEntries.remove(item);
-        return new Section(title, Collections.unmodifiableMap(newEntries));
+    }
+
+    public Section add(Item toAdd) {
+        return new Section(title, Stream.concat(items.stream(), Stream.of(toAdd))
+                .collect(Collectors.toUnmodifiableList()));
+    }
+
+    public Section remove(Item toRemove) {
+        return new Section(title, items.stream().filter(item -> !toRemove.equals(item))
+                .collect(Collectors.toUnmodifiableList()));
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (!(getClass().equals(obj.getClass()))) {
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof Section)) {
             return false;
         }
 
         Section section = (Section) obj;
-        return title.equals(section.title) && entries.equals(section.entries);
+        return title.equals(section.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, entries);
+        return Objects.hash(title);
     }
 
     @Override

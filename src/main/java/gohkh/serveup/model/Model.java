@@ -22,8 +22,8 @@ public class Model implements ManagerModel {
     }
 
     @Override
-    public void addItemToMenu(Item item, Price price, Section section) {
-        menu = menu.addItem(item, price, section);
+    public void addItemToMenu(Item item, Section section) {
+        menu = menu.addItem(item, section);
     }
 
     @Override
