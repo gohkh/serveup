@@ -8,12 +8,20 @@ import java.util.stream.Stream;
 public class Menu {
     private final List<Section> sections;
 
-    public Menu() {
-        this(List.of());
-    }
-
     private Menu(List<Section> sections) {
         this.sections = sections;
+    }
+
+    public static Menu createEmpty() {
+        return new Menu(List.of());
+    }
+
+    public static Menu createWithSections(List<Section> sections) {
+        Menu menu = createEmpty();
+        for (Section section : sections) {
+            menu = menu.addSection(section);
+        }
+        return menu;
     }
 
     public Menu addSection(Section toAdd) {

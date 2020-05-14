@@ -4,7 +4,7 @@ public class Model implements ManagerModel {
     private Menu menu;
 
     public Model() {
-        this(new Menu());
+        this(Menu.createEmpty());
     }
 
     public Model(Menu menu) {

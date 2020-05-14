@@ -18,6 +18,12 @@ public class Section {
         return new Section(title, List.of());
     }
 
+    public static Section createWithItems(String title, List<Item> items) {
+        Section section = createEmpty(title);
+        for (Item item : items) {
+            section = section.add(item);
+        }
+        return section;
     }
 
     public Section add(Item toAdd) {
