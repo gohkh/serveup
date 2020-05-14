@@ -25,11 +25,19 @@ public class Menu {
     }
 
     public Menu addSection(Section toAdd) {
+        if (sections.contains(toAdd)) {
+            throw new DuplicateSectionException();
+        }
+
         return new Menu(Stream.concat(sections.stream(), Stream.of(toAdd))
                 .collect(Collectors.toUnmodifiableList()));
     }
 
     public Menu removeSection(Section toRemove) {
+        if (!sections.contains(toRemove)) {
+            throw new NoSuchSectionException();
+        }
+
         return new Menu(sections.stream().filter(section -> !toRemove.equals(section))
                 .collect(Collectors.toUnmodifiableList()));
     }
