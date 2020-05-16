@@ -26,16 +26,12 @@ public class Section {
         return section;
     }
 
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public boolean contains(Item item) {
-        return items.contains(item);
+    public boolean containsDuplicateItems(Section section) {
+        return items.stream().anyMatch(item -> section.items.contains(item));
     }
 
     public Section add(Item toAdd) {
-        if (contains(toAdd)) {
+        if (items.contains(toAdd)) {
             throw new DuplicateItemException();
         }
 
@@ -44,7 +40,7 @@ public class Section {
     }
 
     public Section remove(Item toRemove) {
-        if (!contains(toRemove)) {
+        if (!items.contains(toRemove)) {
             throw new NoSuchItemException();
         }
 

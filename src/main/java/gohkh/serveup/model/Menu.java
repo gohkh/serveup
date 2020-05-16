@@ -24,19 +24,16 @@ public class Menu {
         return menu;
     }
 
-    public boolean contains(Item item) {
-        return sections.stream().anyMatch(section -> section.contains(item));
-    }
-
     public Menu addSection(Section toAdd) {
-        if (sections.contains(toAdd)) {
+        boolean hasDuplicateSection = sections.contains(toAdd);
+        if (hasDuplicateSection) {
             throw new DuplicateSectionException();
         }
 
-        for (Item item : toAdd.getItems()) {
-            if (contains(item)) {
-                throw new DuplicateItemException();
-            }
+        boolean hasDuplicateItem = sections.stream()
+                .anyMatch(section -> toAdd.containsDuplicateItems(section));
+        if (hasDuplicateItem) {
+            throw new DuplicateItemException();
         }
 
         return new Menu(Stream.concat(sections.stream(), Stream.of(toAdd))
