@@ -27,13 +27,15 @@ public class Menu {
     public Menu addSection(Section toAdd) {
         boolean hasDuplicateSection = sections.contains(toAdd);
         if (hasDuplicateSection) {
-            throw new DuplicateSectionException();
+            throw new DuplicateSectionException(
+                    String.format("The menu already contains a %s section.", toAdd));
         }
 
         boolean hasDuplicateItem = sections.stream()
                 .anyMatch(section -> toAdd.containsDuplicateItems(section));
         if (hasDuplicateItem) {
-            throw new DuplicateItemException();
+            throw new DuplicateItemException(
+                    String.format("The %s section contains items that are already in the menu.", toAdd));
         }
 
         return new Menu(Stream.concat(sections.stream(), Stream.of(toAdd))

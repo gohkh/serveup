@@ -32,7 +32,8 @@ public class Section {
 
     public Section add(Item toAdd) {
         if (items.contains(toAdd)) {
-            throw new DuplicateItemException();
+            throw new DuplicateItemException(
+                    String.format("The %s section already contains %s.", this, toAdd));
         }
 
         return new Section(title, Stream.concat(items.stream(), Stream.of(toAdd))
