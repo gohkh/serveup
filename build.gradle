@@ -10,6 +10,7 @@ plugins {
     id 'java'
     id 'application'
     id 'checkstyle'
+    id 'org.openjfx.javafxplugin' version '0.0.8'
 }
 
 repositories {
@@ -41,4 +42,9 @@ test {
 
 checkstyle {
     toolVersion '8.32'
+}
+
+javafx {
+    version = "14"
+    modules = [ 'javafx.controls' ]
 }
