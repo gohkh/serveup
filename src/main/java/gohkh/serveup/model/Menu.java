@@ -26,8 +26,8 @@ public class Menu {
         boolean hasDuplicateItem = sections.stream()
                 .anyMatch(section -> toAdd.containsDuplicateItems(section));
         if (hasDuplicateItem) {
-            throw new DuplicateItemException(
-                    String.format("The %s section contains items that are already in the menu.", toAdd));
+            throw new DuplicateItemException(String.format(
+                    "The %s section contains items that are already in the menu.", toAdd));
         }
 
         return new Menu(Stream.concat(sections.stream(), Stream.of(toAdd))
