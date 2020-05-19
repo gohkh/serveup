@@ -35,7 +35,7 @@ public class Model implements ManagerModel, ServerModel {
 
     @Override
     public void createOrder() {
-        orderHistory = orderHistory.add(new Order());
+        orderHistory = orderHistory.add(new Order(""));
     }
 
     @Override
