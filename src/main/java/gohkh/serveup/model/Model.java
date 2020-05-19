@@ -5,7 +5,7 @@ public class Model implements ManagerModel, ServerModel {
     private OrderHistory orderHistory;
 
     public Model() {
-        this(Menu.createEmpty(), new OrderHistory());
+        this(new Menu(), new OrderHistory());
     }
 
     public Model(Menu menu, OrderHistory orderHistory) {

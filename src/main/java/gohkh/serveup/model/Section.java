@@ -9,21 +9,13 @@ public class Section {
     private final String title;
     private final List<Item> items;
 
+    public Section(String title) {
+        this(title, List.of());
+    }
+
     private Section(String title, List<Item> items) {
         this.title = title;
         this.items = items;
-    }
-
-    public static Section createEmpty(String title) {
-        return new Section(title, List.of());
-    }
-
-    public static Section createWithItems(String title, List<Item> items) {
-        Section section = createEmpty(title);
-        for (Item item : items) {
-            section = section.add(item);
-        }
-        return section;
     }
 
     public boolean containsDuplicateItems(Section section) {
