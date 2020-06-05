@@ -11,6 +11,7 @@ plugins {
     id 'application'
     id 'checkstyle'
     id 'org.openjfx.javafxplugin' version '0.0.8'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
 }
 
 repositories {
@@ -47,4 +48,10 @@ checkstyle {
 javafx {
     version = '14'
     modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+shadowJar {
+    archiveBaseName = 'serveup'
+    archiveVersion = '0.1.0'
+    archiveClassifier = ''
 }
