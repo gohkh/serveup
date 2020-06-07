@@ -33,7 +33,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClassName = 'gohkh.serveup.ManagerApp'
+    mainClassName = 'gohkh.serveup.ManagerAppLauncher'
 }
 
 test {
