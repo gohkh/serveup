@@ -1,0 +1,42 @@
+@font-face {
+    font-family: "Source Sans Pro Regular";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/SourceSansPro-Regular.ttf");
+}
+
+.root * {
+    -fx-font-family: "Source Sans Pro Regular";
+    -fx-font-size: 24px;
+}
+
+.main {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+
+.sidebar {
+    -fx-background-color: black;
+}
+
+.sidebar .list-view {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.sidebar .list-cell {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 10 0 10 25;
+    -fx-text-fill: white;
+}
+
+.sidebar .list-cell:filled:hover {
+    -fx-background-color: #232323;
+}
+
+.sidebar .list-cell:filled:selected {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
