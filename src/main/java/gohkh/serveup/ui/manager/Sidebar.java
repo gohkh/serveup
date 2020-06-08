@@ -1,6 +1,7 @@
 package gohkh.serveup.ui.manager;
 
 import java.util.Arrays;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,5 +18,9 @@ public class Sidebar extends ManagerFxmlComponent<VBox> {
     public Sidebar() {
         super("Sidebar.fxml");
         menu.setItems(SECTIONS);
+    }
+
+    public void addListener(ChangeListener<Section> listener) {
+        menu.getSelectionModel().selectedItemProperty().addListener(listener);
     }
 }

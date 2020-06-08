@@ -24,7 +24,10 @@ public class MainWindow extends ManagerFxmlComponent<Stage> {
     }
 
     public void loadSidebar() {
-        sidebar.getChildren().setAll(new Sidebar().getRoot());
+        Sidebar sb = new Sidebar();
+        sb.addListener((observableSection, previousSection, currentSection) ->
+                loadContent(currentSection.getContent()));
+        sidebar.getChildren().setAll(sb.getRoot());
     }
 
     public void loadContent(Pane content) {
