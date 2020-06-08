@@ -10,6 +10,7 @@ public class ManagerApp extends Application {
     private Ui ui;
 
     public static void main(String[] args) {
+        System.setProperty("javafx.preloader", ManagerAppPreloader.class.getCanonicalName());
         Application.launch(args);
     }
 

@@ -36,6 +36,10 @@ application {
     mainClassName = 'gohkh.serveup.ManagerAppLauncher'
 }
 
+run {
+    jvmArgs = ['--add-exports=javafx.graphics/com.sun.glass.ui=ALL-UNNAMED']
+}
+
 test {
     // Use junit platform for unit tests
     useJUnitPlatform()
